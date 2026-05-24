@@ -1,7 +1,12 @@
-<img
+---
+import { Image } from "astro:assets"
+import favicon from "@/assets/favicon.png"
+---
+<Image
     id="appIcon"
-    src="/favicon.png"
+    src={favicon}
     alt="PaperDeck icon"
     class="w-32 h-32 select-none"
     draggable="false"
+    priority
 />
