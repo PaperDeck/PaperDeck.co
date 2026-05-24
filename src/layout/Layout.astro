@@ -1,16 +1,35 @@
 ---
 import "@/styles/global.css"
+import ThemeSwitch from "@/components/ThemeSwitch"
 ---
 <!doctype html>
 <html lang="en" class="antialiased">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/x-icon" href="/favicon.png">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <title>PaperDeck</title>
+    <script is:inline>
+      const storageKey = "paperdeck-theme"
+      const root = document.documentElement
+
+      const applyTheme = (theme) => {
+        root.classList.toggle("dark", theme === "dark")
+        root.style.colorScheme = theme
+      }
+
+      try {
+        const storedTheme = localStorage.getItem(storageKey)
+        const preferredTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
+        applyTheme(storedTheme === "dark" || storedTheme === "light" ? storedTheme : preferredTheme)
+      } catch {
+        applyTheme(window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+      }
+    </script>
     <slot name="head" />
   </head>
   <body class="flex items-center justify-center bg-zinc-50 dark:bg-zinc-900 h-screen text-zinc-900 dark:text-zinc-50">
+    <ThemeSwitch client:load />
     <slot />
   </body>
 </html>
