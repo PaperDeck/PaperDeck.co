@@ -2,12 +2,19 @@
 import Layout from "@/layout/Layout.astro"
 import Icon from "@/components/Icon.astro"
 import DownloadButton from "@/components/DownloadButton.astro"
+import { releaseApiUrl } from "@/consts"
+const response = await fetch(releaseApiUrl, {
+    cache: "force-cache"
+})
+const release = await response.json()
+const latestVersion = release.tag_name
 ---
 
 <Layout title="PaperDeck">
     <div class="w-full max-w-xl mx-auto p-8 flex flex-col items-center gap-6">
         <Icon />
-        <h1 class="text-2xl font-semibold tracking-tight">PaperDeck</h1>
+        <h1 class="text-2xl font-semibold tracking-tight"> PaperDeck </h1>
+        <p class="text-center text-zinc-800 dark:text-zinc-400"> Latest Version: {latestVersion} </p>
         <DownloadButton />
     </div>
 </Layout>
