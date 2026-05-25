@@ -43,7 +43,9 @@ import ThemeSwitch from "@/components/ThemeSwitch"
   <body
     class="flex items-center justify-center bg-zinc-50 dark:bg-zinc-900 h-screen text-zinc-900 dark:text-zinc-50"
   >
-    <ThemeSwitch client:load />
+    <div class="absolute top-4 right-4">
+      <ThemeSwitch client:load />
+    </div>
     <slot />
   </body>
 </html>
