@@ -2,6 +2,7 @@
 import Layout from "@/layout/Layout.astro"
 import Icon from "@/components/Icon.astro"
 import DownloadButton from "@/components/DownloadButton.astro"
+import GithubIcon from "@/components/GithubIcon.astro"
 import { releaseApiUrl } from "@/consts"
 
 let release
@@ -27,6 +28,17 @@ const latestVersion = release.tag_name
     <p class="text-center text-zinc-500 dark:text-zinc-400">
       Latest Version: {latestVersion}
     </p>
-    <DownloadButton />
+    <div class="flex flex-col items-center justify-center gap-3">
+      <a
+        href="https://github.com/PaperDeck/PaperDeck"
+        target="_blank"
+        rel="noreferrer"
+        class="flex items-center gap-2 text-sm font-medium text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white transition-colors"
+      >
+        <GithubIcon />
+        View on GitHub
+      </a>
+      <DownloadButton />
+    </div>
   </div>
 </Layout>

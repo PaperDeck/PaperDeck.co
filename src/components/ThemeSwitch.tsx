@@ -1,20 +1,20 @@
-const storageKey = "paperdeck-theme";
+const storageKey = "paperdeck-theme"
 
 function setTheme(theme: "light" | "dark") {
-  const root = document.documentElement;
-  root.classList.toggle("dark", theme === "dark");
-  root.style.colorScheme = theme;
-  localStorage.setItem(storageKey, theme);
+  const root = document.documentElement
+  root.classList.toggle("dark", theme === "dark")
+  root.style.colorScheme = theme
+  localStorage.setItem(storageKey, theme)
 }
 
 export default function ThemeSwitch() {
   const handleClick = () => {
-    const isDark = document.documentElement.classList.contains("dark");
-    setTheme(isDark ? "light" : "dark");
-  };
+    const isDark = document.documentElement.classList.contains("dark")
+    setTheme(isDark ? "light" : "dark")
+  }
 
   return (
-    <div className="fixed right-4 top-4 z-50">
+    <div>
       <button
         type="button"
         aria-label="Toggle color theme"
@@ -36,5 +36,5 @@ export default function ThemeSwitch() {
         />
       </button>
     </div>
-  );
+  )
 }
