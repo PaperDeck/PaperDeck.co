@@ -12,4 +12,6 @@ export default defineConfig({
   },
 
   integrations: [react()],
+  site: "https://paperdeck.co/",
+  output: "static",
 })
