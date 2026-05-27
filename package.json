@@ -10,6 +10,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "update:release": "node scripts/update-release.js",
     "prepare": "husky"
   },
   "lint-staged": {

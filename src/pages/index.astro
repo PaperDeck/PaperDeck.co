@@ -3,7 +3,7 @@ import Layout from "@/layout/Layout.astro"
 import Icon from "@/components/Icon.astro"
 import DownloadButton from "@/components/DownloadButton.astro"
 import GithubIcon from "@/components/GithubIcon.astro"
-import { releaseApiUrl } from "@/consts"
+import releaseData from "@/data/release.json"
 
 interface Release {
   tag_name: string
@@ -13,30 +13,7 @@ interface Release {
   }[]
 }
 
-let release: Release
-if (import.meta.env.DEV) {
-  // Mock response for development
-  const mockRelease = {
-    tag_name: "v1.0.0",
-    assets: [
-      {
-        name: "PaperDeck-1.0.0.Setup.exe",
-        browser_download_url:
-          "https://github.com/PaperDeck/PaperDeck/releases/download/v1.0.0/PaperDeck-1.0.0.Setup.exe",
-      },
-      {
-        name: "PaperDeck-linux-x64-1.0.0.zip",
-        browser_download_url:
-          "https://github.com/PaperDeck/PaperDeck/releases/download/v1.0.0/PaperDeck-linux-x64-1.0.0.zip",
-      },
-    ],
-  }
-  release = mockRelease
-} else {
-  const response = await fetch(releaseApiUrl)
-  console.log(`Status: ${response.status}`)
-  release = await response.json()
-}
+const release = releaseData as Release
 
 const latestVersion = release.tag_name
 const version = latestVersion.replace(/^v/, "")
